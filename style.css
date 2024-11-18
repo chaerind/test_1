@@ -1,0 +1,155 @@
+/* 헤더 스타일 */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px; 
+    width: 100%;
+}
+
+header img {
+    width: 800px; 
+}
+
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('fonts/Pretendard-Bold.woff2') format('woff2');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('fonts/Pretendard-Light.woff2') format('woff2');
+    font-weight: 300;
+}
+
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    aspect-ratio: 1/3.5;
+    animation: background-flash 2s infinite;
+}
+
+
+@keyframes background-flash {
+    0%, 100% {
+        background: linear-gradient(180deg,  #ff6915 0%, #ff009d 100%); 
+    }
+    50% {
+        background: black; 
+    }
+}
+
+.text {
+    font-size: 68px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    padding: 2em 2em;
+    
+}
+
+
+
+.background-image-absolute {
+    position: absolute;
+    width: 100%;
+    top: 80%;
+    z-index: -1;
+    padding: 40px;
+    
+}
+
+
+.background-image-absolute img {
+    width: 100%;
+}
+
+.light-image img {
+    width: 100%;
+}
+
+.light-image:hover img {
+    animation-name: blink-animation;
+    animation-duration: 1s; /* 깜빡이는 속도 조절 */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink-animation {
+    0%, 100% {
+        opacity: 1; /* 완전히 보임 */
+    }
+    50% {
+        opacity: 0; /* 완전히 사라짐 */
+    }
+}
+
+.backgound-image {
+    position: fixed;
+    top: 100px;
+    z-index: -1;
+    padding: 0 40px 0 40px;
+}
+
+.backgound-image img {
+    width: 100%;
+}
+
+
+
+.chat-container {
+    position: absolute; 
+    top: 580%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 80%; 
+    max-width: 400px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    z-index: 1; 
+}
+
+
+#inputField {
+    padding: 12px;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid #90caf9;
+    margin-top: 10px;
+}
+
+#sendButton {
+    padding: 12px 20px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #9b59b6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#sendButton:hover {
+    background-color: #e91e63;
+}
+
+.floating-text {
+    position: absolute;
+    z-index: -1;
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(45deg, #9b59b6, #f1c40f, #e91e63);
+    border-radius: 10px;
+    opacity: 0.9;
+    transition: transform 1s ease, opacity 1s ease;
+    white-space: nowrap;
+}
+
+
+

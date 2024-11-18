@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Poster</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    
+    <body>
+
+        <header>
+            <img src="img/logo1.svg" alt="로고" />
+        </header>
+
+ <div class="content">
+    <div class="text">
+        <p>2025 한화 서울세계불꽃축제</p>
+        <p>일시: 2025년 10월 01일 오후 7시 ~ 9시 </p>
+        <p>장소: 서울 여의도 한강공원 </p>
+        <br>
+        <br>
+        <p>한화와 함께하는 </p>
+        <p>서울세계불꽃축제 2024</p>
+        <p>소중한 사람들과 함께해요.</p>
+        <p>밤하늘을 화려하게 수놓는 불꽃처럼</p>
+        <p>빛나는 한 해 되시기를 한화가 응원합니다!</p>
+        <br>
+        <br>
+        <p>2025 Hanwha Seoul </p>
+        <p>International Fireworks Festival</p>
+        <p> Date: October 1, 2025, 7:00 PM - 9:00 PM </p>
+        <p> Location: Yeouido Hangang Park,</p>
+        <p> Seoul, South Korea </p>
+        <br>
+        <br>
+        <p>Together with Hanwha</p>
+        <p>Seoul World Fireworks Festival 2024</p>
+        <p>Enjoy it with your loved ones.</p>
+        <p>Like the fireworks that adorn the night sky</p>
+        <p>Hanwha wishes you a shining year ahead!</p>
+    </div>
+
+    <div class="background-image-absolute">
+        <img src="img/light.svg" alt="" />
+    </div>
+
+    <div class="light-image"><img src="img/light2.svg" alt="" /></div>
+    
+
+    <div class="backgound-image">
+        <img src="img/img1.png" alt="" />
+    </div>
+
+
+    
+    <div class="chat">
+        <div class="chat-container">
+            <input type="text" id="inputField" placeholder="한 해의 소망을 하늘에 띄워보세요.">
+            <button id="sendButton" onclick="addFloatingText()">전송</button>
+            <script>
+                // 기본 문장 
+                const messages = [
+                    "채린아 이번년도 고생했어 내년에도 힘내자!",
+                    "내년을 기약하며",
+                    "사랑합니다",
+                    "우리 가족 모두 건강하게 해주세요",
+                    "좋은 인연 만나게 해주세요",
+                    "우리 아들 대학 꼭 합격해라",
+                    "완치되게 해주세요",   
+                    "행복이 가득한 한 해가 되길!",
+                    "나와 사랑하는 사람들 모두 건강하길!",
+                    "올해도 소중한 인연들이 함께 하길"                   
+                ];
+
+                // 문장의 위치를 저장할 배열
+                const existingPositions = [];
+
+                // 화면 크기와 채팅창 및 버튼 위치를 고려하여 문장이 나타날 수 있는 위치 계산
+                function getRandomPosition() {
+                    const padding = 10; // 여백
+                    const container = document.querySelector('.chat-container');
+                    const containerRect = container.getBoundingClientRect();
+
+                    // 채팅창과 버튼의 하단 위치
+                    const buttonRect = document.getElementById('sendButton').getBoundingClientRect();
+
+                    // 랜덤 위치 계산
+                    let x, y;
+                    const baseY = window.innerHeight * 5.28; // 528%에 해당하는 픽셀 값
+                    const range = 350; // 변동 범위
+
+                    x = Math.random() * (window.innerWidth - 100) + 50; // 랜덤 x 위치
+                    y = baseY + (Math.random() * range * 2 - range); // 528% 근처에서 랜덤
+
+
+                    // 새 위치 추가
+                    existingPositions.push({ x, y });
+
+                    return { x: `${x}px`, y: `${y}px` };
+                }
+
+                // 문장을 랜덤 위치에 고정시키는 함수
+                function createFloatingText(message) {
+                    const floatingText = document.createElement("div");
+                    floatingText.className = "floating-text";
+                    floatingText.textContent = message;
+
+                    const { x, y } = getRandomPosition();
+                    floatingText.style.left = x;
+                    floatingText.style.top = y;
+
+                    document.body.appendChild(floatingText);
+
+                    // 일정 시간마다 위치 변경 (채팅창과 겹치지 않도록)
+                    setInterval(() => {
+                        const { x, y } = getRandomPosition();
+                        floatingText.style.left = x;
+                        floatingText.style.top = y;
+                    }, 4000);
+                }
+
+                // 모든 기본 문장을 랜덤 위치에 고정
+                messages.forEach(message => {
+                    createFloatingText(message);
+                });
+
+                // 사용자 입력한 문장을 랜덤 위치에 고정하는 함수
+                function addFloatingText() {
+                    const inputField = document.getElementById("inputField");
+                    const message = inputField.value;
+                    if (message.trim() !== "") {
+                        createFloatingText(message);
+                        inputField.value = "";  // 입력 필드 초기화
+                    }
+                }
+            </script>
+        </div>
+        <div id="output"></div>
+    </div>
+</div>
+
+
+            <script src="script.js"></script> 
+    </body>
+
+
+</html>
